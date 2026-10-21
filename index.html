@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mg Aung Myat Kaung & Ma Wyne Pyae Pyae Aung Wedding Invitation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Padauk:wght@400;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FAF8F5',
+                            100: '#F5F0EB',
+                            200: '#E8DFD5',
+                            300: '#D8C9B8',
+                        },
+                        gold: {
+                            100: '#FBF3D5',
+                            300: '#E5C158',
+                            400: '#D4AF37',
+                            500: '#C59B27',
+                            600: '#AA7C11',
+                            700: '#8B6208',
+                        },
+                        lace: '#FEFCF8',
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        cursive: ['Great Vibes', 'cursive'],
+                        myanmar: ['Padauk', 'sans-serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                        playfair: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f7f3ed;
+            background-image: 
+                radial-gradient(#d4af37 0.75px, transparent 0.75px),
+                radial-gradient(#d4af37 0.75px, #f7f3ed 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+
+        /* Gold Foil Shimmer Effect */
+        .gold-shimmer {
+            background: linear-gradient(135deg, #aa7c11 0%, #fef3c7 25%, #c59b27 50%, #fef3c7 75%, #aa7c11 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: goldShimmer 6s linear infinite;
+        }
+
+        @keyframes goldShimmer {
+            to { background-position: 200% center; }
+        }
+
+        .gold-border-frame {
+            border: 2px solid #d4af37;
+            outline: 1px solid #c59b27;
+            outline-offset: 4px;
+            box-shadow: 0 10px 30px rgba(139, 98, 8, 0.12);
+        }
+
+        .wax-seal {
+            background: radial-gradient(circle at 30% 30%, #e5c158, #aa7c11);
+            box-shadow: 0 4px 12px rgba(139, 98, 8, 0.35), inset 0 2px 3px rgba(255, 255, 255, 0.4);
+        }
+
+        .floating-element {
+            animation: floatUpDown 4s ease-in-out infinite;
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-7px) rotate(1.5deg); }
+        }
+
+        .petal-fall {
+            position: fixed;
+            pointer-events: none;
+            z-index: 30;
+            top: -10%;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { opacity: 0; transform: translateY(0) rotate(0deg) scale(0.6); }
+            20% { opacity: 0.85; }
+            80% { opacity: 0.85; }
+            100% { opacity: 0; transform: translateY(105vh) rotate(360deg) scale(1.1); }
+        }
+
+        .arch-frame {
+            border-top-left-radius: 130px;
+            border-top-right-radius: 130px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .sparkle-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="text-stone-800 font-sans antialiased min-h-screen flex flex-col items-center justify-center p-3 sm:p-6 select-none relative overflow-x-hidden">
+
+    <!-- Interactive Canvas Sparkles -->
+    <canvas id="particleCanvas" class="sparkle-canvas"></canvas>
+
+    <!-- Floating Flower Petals Container -->
+    <div id="petals-container" class="pointer-events-none fixed inset-0 z-30"></div>
+
+    <button id="musicToggleBtn" onclick="toggleAudio()" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-white text-gold-600 shadow-xl flex items-center justify-center text-lg hover:scale-110 transition-all border-2 border-gold-300" title="Play / Pause Music">
+        <i id="musicIcon" class="fa-solid fa-music"></i>
+    </button>
+
+    <!-- Background Music -->
+    <audio id="bgAudio" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=wedding-piano-112191.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Envelope Overlay Modal -->
+    <div id="envelope-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/65 backdrop-blur-md p-4 transition-all duration-700">
+        <div class="relative w-full max-w-sm bg-lace gold-border-frame rounded-3xl p-8 text-center flex flex-col items-center justify-between min-h-[500px]">
+            
+            <div class="text-gold-700 font-myanmar text-xs tracking-widest uppercase font-semibold">
+                မင်္ဂလာဧည့်ခံပွဲဖိတ်ကြားလွှာ
+            </div>
+            
+            <div class="my-auto space-y-4 w-full">
+                <div class="relative inline-block my-2 w-full">
+                    <!-- Elegant Cream Card Inner Frame -->
+                    <div class="w-full py-6 rounded-2xl border border-dashed border-gold-400 flex flex-col items-center justify-center p-4 bg-cream-50 shadow-inner relative">
+                        
+                        <div class="w-14 h-14 rounded-full wax-seal flex items-center justify-center text-white text-xl mb-3 border-2 border-gold-100 shadow-md floating-element">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+
+                        <span class="font-myanmar text-xs text-stone-600 font-medium">မင်္ဂလာပါ</span>
+                        <h2 class="font-cursive text-4xl gold-shimmer my-1 font-bold">Wedding Invitation</h2>
+                        
+                        <p class="font-myanmar text-xs text-stone-700 font-bold mt-2">မောင်အောင်မြတ်ကောင်း</p>
+                        <p class="font-myanmar text-xs text-gold-600 font-bold my-0.5">&</p>
+                        <p class="font-myanmar text-xs text-stone-700 font-bold">မဝိုင်းပြည့်ပြည့်အောင်</p>
+                        
+                        <div class="mt-3 pt-2 border-t border-gold-300/50 text-gold-700 font-serif text-xs font-semibold tracking-wider">
+                            SUNDAY • 15 NOV 2026
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Open Invitation Button -->
+            <button onclick="openInvitation()" class="mt-4 px-7 py-3 rounded-full bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-700 hover:to-gold-600 text-white font-myanmar text-xs font-bold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center gap-2 border border-gold-300">
+                <i class="fa-solid fa-envelope-open text-xs"></i>
+                ဖိတ်စာဖွင့်ကြည့်ရန် နှိပ်ပါ
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Invitation Card -->
+    <div id="main-card" class="w-full max-w-lg bg-lace gold-border-frame rounded-3xl overflow-hidden my-4 relative opacity-0 transform scale-95 transition-all duration-1000 z-10 p-6 sm:p-10 text-center space-y-8">
+        
+        <!-- Language Switcher Floating Header -->
+        <div class="absolute top-4 right-4 z-20 flex bg-white/90 backdrop-blur rounded-full p-1 border border-gold-300 text-xs font-semibold shadow-sm">
+            <button id="lang-my" onclick="setLanguage('my')" class="px-3 py-1 rounded-full bg-gold-600 text-white font-bold shadow-sm transition-all">မြန်မာ</button>
+            <button id="lang-en" onclick="setLanguage('en')" class="px-3 py-1 rounded-full text-stone-600 hover:text-gold-700 transition-all">EN</button>
+        </div>
+
+          <!-- Gold Floral Header Monogram Frame -->
+        <div class="pt-4 flex flex-col items-center">
+            <div class="w-40 h-40 rounded-full border-2 border-dashed border-gold-400 flex flex-col items-center justify-center p-3 bg-cream-50 shadow-sm relative">
+                <!-- Floral Outline SVG -->
+                <svg class="absolute inset-0 w-full h-full text-gold-400/30 p-1" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+                    <circle cx="50" cy="50" r="46" stroke-width="0.8" stroke-dasharray="3 3"/>
+                </svg>
+                <span class="font-cursive text-4xl gold-shimmer font-bold">A & W</span>
+                <span class="font-myanmar text-[11px] text-stone-700 font-bold mt-1">မောင်အောင်မြတ်ကောင်း</span>
+                <span class="font-myanmar text-[11px] text-stone-700 font-bold">&</span>
+                <span class="font-myanmar text-[11px] text-stone-700 font-bold">မဝိုင်းပြည့်ပြည့်အောင်</span>
+                <span class="font-serif text-[10px] text-gold-700 mt-1 font-bold tracking-widest">15 . 11 . 2026</span>
+            </div>
+        </div>
+
+        <!-- Invitation Title Text -->
+        <div class="space-y-1">
+            <h1 class="lang-my font-myanmar text-xl font-bold gold-shimmer">မင်္ဂလာဧည့်ခံပွဲဖိတ်ကြားလွှာ</h1>
+            <h1 class="lang-en font-serif text-lg font-bold gold-shimmer hidden">Wedding Invitation</h1>
+        </div>
+
+        <!-- Parents and Groom & Bride Details -->
+        <div class="space-y-6 text-stone-700 text-sm">
+            
+            <!-- Groom Side -->
+            <div class="space-y-1.5 p-5 bg-cream-50/80 rounded-2xl border border-gold-300/60 shadow-sm relative">
+                <p class="lang-my font-myanmar text-xs text-stone-600 leading-relaxed">
+                    ရန်ကုန်တိုင်းဒေသကြီး ၊ အင်းစိန်မြို့နယ် ၊ အောင်ဆန်းရပ်ကွက်နေ<br>
+                    ဦးမောင်မောင်မျိုးညွှန့် + ဒေါ်နော်စေးလာ တို့၏ သားကြီး<br>
+                    မသီရီနိုင် ၏ အစ်ကို
+                </p>
+                <p class="lang-en font-sans text-xs text-stone-600 hidden leading-relaxed">
+                    Eldest Son of U Maung Maung Myint Nyo + Daw Naw Say Lar<br>
+                    Brother of Ma Thiri Naing<br>
+                    (Insein Township, Yangon)
+                </p>
+                
+                <h2 class="lang-my font-myanmar text-2xl font-bold text-gold-700 mt-2">
+                    မောင်အောင်မြတ်ကောင်း
+                </h2>
+                <h2 class="lang-en font-serif text-2xl font-bold text-gold-700 hidden mt-2">
+                    Mg Aung Myat Kaung
+                </h2>
+                <p class="text-[11px] font-sans font-bold text-stone-500 uppercase tracking-widest mt-1">
+                    B.Sc (Computer)
+                </p>
+            </div>
+
+            <div class="font-cursive text-4xl text-gold-600 font-bold my-1">&</div>
+
+            <!-- Bride Side -->
+            <div class="space-y-1.5 p-5 bg-cream-50/80 rounded-2xl border border-gold-300/60 shadow-sm relative">
+                <p class="lang-my font-myanmar text-xs text-stone-600 leading-relaxed">
+                    ရန်ကုန်တိုင်းဒေသကြီး ၊ အင်းစိန်မြို့နယ် ၊ ပိန္နဲကုန်းရပ်ကွက်နေ<br>
+                    (ဦးလှမျိုးအောင်) + ဒေါ်တင်အုန်း တို့၏ သမီး
+                </p>
+                <p class="lang-en font-sans text-xs text-stone-600 hidden leading-relaxed">
+                    Daughter of (U Hla Myo Aung) + Daw Tin Ohn<br>
+                    (Insein Township, Yangon)
+                </p>
+                
+                <h2 class="lang-my font-myanmar text-2xl font-bold text-gold-700 mt-2">
+                    မဝိုင်းပြည့်ပြည့်အောင်
+                </h2>
+                <h2 class="lang-en font-serif text-2xl font-bold text-gold-700 hidden mt-2">
+                    Ma Wyne Pyae Pyae Aung
+                </h2>
+                <p class="text-[11px] font-sans font-bold text-stone-500 uppercase tracking-widest mt-1">
+                    B.Econ (Economics)
+                </p>
+            </div>
+        </div>
+
+        <!-- Invitation Message -->
+        <p class="lang-my font-myanmar text-xs text-stone-600 leading-relaxed italic bg-gold-100/40 p-3 rounded-xl border border-gold-200">
+            “မင်္ဂလာဧည့်ခံပွဲ” သို့ အောက်ပါအစီအစဉ်အတိုင်း ကြွရောက်ချီးမြှင့်ပါရန် ခင်မင်ရင်းနှီးစွာ ဖိတ်ကြားအပ်ပါသည်။
+        </p>
+
+        <!-- Redesigned Date & Time Section with Countdown -->
+        <div class="relative bg-gradient-to-b from-cream-50 via-white to-cream-50 p-6 sm:p-8 rounded-3xl border-2 border-gold-300 shadow-xl space-y-6 overflow-hidden">
+            
+            <!-- Corner Decorative Ornaments -->
+            <div class="absolute top-2 left-2 text-gold-400/40 text-lg"><i class="fa-solid fa-gem"></i></div>
+            <div class="absolute top-2 right-2 text-gold-400/40 text-lg"><i class="fa-solid fa-gem"></i></div>
+            
+            <!-- Header Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-100 border border-gold-300 shadow-sm">
+                <i class="fa-solid fa-calendar-heart text-gold-600 text-xs"></i>
+                <span class="font-myanmar text-xs font-bold text-gold-800">မင်္ဂလာဧည့်ခံပွဲ အစီအစဉ်</span>
+            </div>
+
+            <!-- Main Arch Date Card -->
+            <div class="arch-frame border-2 border-gold-400 p-6 bg-white max-w-xs mx-auto shadow-md relative group">
+                <div class="font-myanmar text-xs text-stone-500 font-bold uppercase tracking-wider">မင်္ဂလာနေ့ရက် (တနင်္ဂနွေနေ့)</div>
+                
+                <div class="flex items-center justify-center my-3">
+                    <div class="h-[1px] w-8 bg-gold-300"></div>
+                    <div class="font-serif text-6xl font-extrabold gold-shimmer px-4 tracking-tight">15</div>
+                    <div class="h-[1px] w-8 bg-gold-300"></div>
+                </div>
+
+                <p class="font-myanmar text-base text-stone-800 font-bold">၁၅ - ၁၁ - ၂၀၂၆ (တနင်္ဂနွေနေ့)</p>
+                <div class="inline-block mt-3 px-3 py-1 bg-cream-100 rounded-lg border border-gold-200 text-gold-800 font-myanmar text-xs font-semibold">
+                    ၁၃၈၈ ခုနှစ် ၊ တန်ဆောင်မုန်းလဆန်း (၆) ရက်
+                </div>
+            </div>
+
+            <!-- Time Display Badge -->
+            <div class="flex items-center justify-center gap-2 text-gold-800 bg-gold-50/80 py-2.5 px-4 rounded-xl border border-gold-200/80 max-w-xs mx-auto shadow-inner">
+                <i class="fa-solid fa-clock text-gold-600 text-sm"></i>
+                <span class="font-myanmar text-xs font-bold">နံနက် (၉ : ၀၀) နာရီ မှ နေ့လည် (၁၂ : ၀၀) နာရီအထိ</span>
+            </div>
+
+            <!-- Interactive Live Countdown Timer -->
+            <div class="pt-2 border-t border-gold-200/60">
+                <p class="font-myanmar text-[11px] text-stone-500 font-semibold mb-2">မင်္ဂလာပွဲကျင်းပရန် ကျန်ရှိသောအချိန်</p>
+                <div id="countdown" class="grid grid-cols-4 gap-2 max-w-xs mx-auto">
+                    <div class="bg-white p-2 rounded-xl border border-gold-300 shadow-sm text-center">
+                        <span id="cd-days" class="font-serif text-lg font-bold text-gold-700 block">--</span>
+                        <span class="font-myanmar text-[10px] text-stone-500 font-medium">ရက်</span>
+                    </div>
+                    <div class="bg-white p-2 rounded-xl border border-gold-300 shadow-sm text-center">
+                        <span id="cd-hours" class="font-serif text-lg font-bold text-gold-700 block">--</span>
+                        <span class="font-myanmar text-[10px] text-stone-500 font-medium">နာရီ</span>
+                    </div>
+                    <div class="bg-white p-2 rounded-xl border border-gold-300 shadow-sm text-center">
+                        <span id="cd-minutes" class="font-serif text-lg font-bold text-gold-700 block">--</span>
+                        <span class="font-myanmar text-[10px] text-stone-500 font-medium">မိနစ်</span>
+                    </div>
+                    <div class="bg-white p-2 rounded-xl border border-gold-300 shadow-sm text-center">
+                        <span id="cd-seconds" class="font-serif text-lg font-bold text-gold-700 block">--</span>
+                        <span class="font-myanmar text-[10px] text-stone-500 font-medium">စက္ကန့်</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Styled Calendar Integration Buttons -->
+            <div class="flex flex-col sm:flex-row gap-2.5 justify-center pt-2">
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mg+Aung+Myat+Kaung+%26+Ma+Wyne+Pyae+Pyae+Aung+Wedding&dates=20261115T023000Z/20261115T053000Z&details=Wedding+Reception&location=Dhammikayama+Pauk+Taw+Monastery,+Insein,+Yangon" target="_blank" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-700 hover:to-gold-600 text-white font-myanmar text-xs font-semibold shadow-md hover:shadow-lg transition flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
+                    <i class="fa-brands fa-google"></i> Google Calendar တွင်မှတ်ရန်
+                </a>
+                <a href="#" onclick="downloadICS()" class="px-5 py-2.5 rounded-xl border border-gold-400 bg-white text-gold-800 hover:bg-gold-50 font-myanmar text-xs font-semibold shadow-sm transition flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
+                    <i class="fa-brands fa-apple text-sm"></i> iPhone Calendar တွင်မှတ်ရန်
+                </a>
+            </div>
+        </div>
+
+        <!-- Wedding Photos Gallery Section -->
+        <div class="space-y-4">
+            <h3 class="font-myanmar text-base font-bold text-gold-800 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-heart text-gold-500 text-xs"></i>
+                အမှတ်တရဓာတ်ပုံများ
+                <i class="fa-solid fa-heart text-gold-500 text-xs"></i>
+            </h3>
+            
+            <!-- Photo Grid (Google Drive / Direct Image URL များ ထည့်သွင်းရန်) -->
+            <div class="grid grid-cols-2 gap-3">
+                <div class="arch-frame bg-white p-2 border border-gold-300 shadow-md cursor-pointer group hover:scale-[1.02] transition-transform" onclick="openPhotoModal(0)">
+                    <div class="arch-frame overflow-hidden relative h-48">
+                        <img id="gallery-img-0" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500" alt="Mg Aung Myat Kaung & Ma Wyne Pyae Pyae Aung" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-stone-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-myanmar">
+                            <i class="fa-solid fa-expand mr-1"></i> ပုံကြီးကြည့်ရန်
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arch-frame bg-white p-2 border border-gold-300 shadow-md cursor-pointer group hover:scale-[1.02] transition-transform" onclick="openPhotoModal(1)">
+                    <div class="arch-frame overflow-hidden relative h-48">
+                        <img id="gallery-img-1" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=500" alt="Mg Aung Myat Kaung & Ma Wyne Pyae Pyae Aung" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-stone-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-myanmar">
+                            <i class="fa-solid fa-expand mr-1"></i> ပုံကြီးကြည့်ရန်
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arch-frame bg-white p-2 border border-gold-300 shadow-md cursor-pointer group hover:scale-[1.02] transition-transform col-span-2" onclick="openPhotoModal(2)">
+                    <div class="rounded-2xl overflow-hidden relative ">
+                        <img id="gallery-img-2" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" alt="Mg Aung Myat Kaung & Ma Wyne Pyae Pyae Aung" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-stone-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-myanmar">
+                            <i class="fa-solid fa-expand mr-1"></i> ပုံကြီးကြည့်ရန်
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arch-frame bg-white p-2 border border-gold-300 shadow-md cursor-pointer group hover:scale-[1.02] transition-transform" onclick="openPhotoModal(3)">
+                    <div class="arch-frame overflow-hidden relative h-48">
+                        <img id="gallery-img-3" src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=500" alt="Mg Aung Myat Kaung & Ma Wyne Pyae Pyae Aung" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-stone-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-myanmar">
+                            <i class="fa-solid fa-expand mr-1"></i> ပုံကြီးကြည့်ရန်
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arch-frame bg-white p-2 border border-gold-300 shadow-md cursor-pointer group hover:scale-[1.02] transition-transform" onclick="openPhotoModal(4)">
+                    <div class="arch-frame overflow-hidden relative h-48">
+                        <img id="gallery-img-4" src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=500" alt="Mg Aung Myat Kaung & Ma Wyne Pyae Pyae Aung" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-stone-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-myanmar">
+                            <i class="fa-solid fa-expand mr-1"></i> ပုံကြီးကြည့်ရန်
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arch-frame bg-white p-2 border border-gold-300 shadow-md cursor-pointer group hover:scale-[1.02] transition-transform col-span-2" onclick="openPhotoModal(5)">
+                    <div class="rounded-2xl overflow-hidden relative h-64">
+                        <img id="gallery-img-5" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800" alt="Mg Aung Myat Kaung & Ma Wyne Pyae Pyae Aung" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-stone-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-myanmar">
+                            <i class="fa-solid fa-expand mr-1"></i> ပုံကြီးကြည့်ရန်
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location & Map Section -->
+        <div class="pt-4 border-t border-gold-200/80 space-y-4">
+            <div>
+                <p class="font-myanmar text-xs text-stone-500 font-medium">မင်္ဂလာနေရာ</p>
+                <h4 class="font-myanmar text-lg font-bold text-gold-800 mt-1">“ဓမ္မိကာရာမပေါက်တောကျောင်းတိုက်”</h4>
+                <p class="font-myanmar text-xs text-stone-600 mt-1">ဘုရင့်နောင်လမ်းမ ၊ ညောင်ပင်မှတ်တိုင် ၊ အင်းစိန်မြို့နယ်။</p>
+            </div>
+
+            <a href="https://maps.app.goo.gl/LazH9FMj51StnYSV8?g_st=ac" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-7 py-3 rounded-2xl bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-700 hover:to-gold-600 text-white font-myanmar font-bold text-xs shadow-md hover:shadow-lg transition">
+                <i class="fa-solid fa-map-location-dot mr-2"></i>
+                <span class="lang-my">မြေပုံကြည့်ရှုရန်</span>
+                <span class="lang-en hidden">View Map Location</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Photo Modal Carousel -->
+    <div id="photoModal" class="fixed inset-0 z-50 bg-black/90 hidden backdrop-blur-md flex flex-col items-center justify-between p-4 sm:p-8">
+        <!-- Close Button -->
+        <button onclick="closePhotoModal()" class="self-end text-white text-2xl p-2 hover:text-gold-300">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- Image Container -->
+        <div class="my-auto max-w-md w-full flex items-center justify-center relative">
+            <img id="modalImage" src="" alt="Full Photo" class="max-h-[70vh] rounded-2xl object-contain border-2 border-gold-300/40 shadow-2xl">
+        </div>
+
+        <!-- Carousel Controls -->
+        <div class="flex items-center gap-6 text-white pb-4">
+            <button onclick="prevPhoto()" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 border border-white/30">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <span id="photoIndex" class="font-sans text-xs tracking-widest font-semibold">1 / 4</span>
+            <button onclick="nextPhoto()" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 border border-white/30">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function convertGoogleDriveLink(url) {
+            // Converts standard Google Drive view/file links to direct thumbnail/uc URLs
+            const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+            if (match && match[1]) {
+                return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`;
+            }
+            return url;
+        }
+
+        // Google Drive Direct Image Links Array
+        const rawPhotos = [
+            "https://drive.google.com/file/d/18oHH91xgI1Nc5hJCfHkoKdRjvW9AeJYF/view?usp=drivesdk",
+            "https://drive.google.com/file/d/11qQ2sG964pyPpIRpT-0xX5ZdqyY7mErp/view?usp=drivesdk",
+            "https://drive.google.com/file/d/15z4UOl7M6aLgNxlZGszbEdfOBoF6rCBi/view?usp=drivesdk",
+            "https://drive.google.com/file/d/1NaXmpuyCdUQ09xOoLlfEBf9uNaPjgCY_/view?usp=drivesdk",
+            "https://drive.google.com/file/d/1QY0Z3cfG8_Paw6K6nYq_Tvrp-dx9hlGI/view?usp=drivesdk",
+            "https://drive.google.com/file/d/18hGplzl0Oy8AzJJSQhed64-kvmfC7zeL/view?usp=drivesdk"
+        ];
+
+        const galleryPhotos = rawPhotos.map(convertGoogleDriveLink);
+        let currentPhotoIdx = 0;
+
+        // Apply photos from drive to gallery grid elements on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            for (let i = 0; i < galleryPhotos.length; i++) {
+                const img = document.getElementById(`gallery-img-${i}`);
+                if (img) img.src = galleryPhotos[i];
+            }
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            initParticles();
+            createPetals();
+        });
+
+        function openInvitation() {
+            const overlay = document.getElementById('envelope-overlay');
+            const mainCard = document.getElementById('main-card');
+            
+            // Fade out envelope
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 700);
+
+            // Reveal main invitation card
+            mainCard.classList.remove('opacity-0', 'scale-95');
+            mainCard.classList.add('opacity-100', 'scale-100');
+
+            // Play background music
+            const audio = document.getElementById('bgAudio');
+            if (audio) {
+                audio.play().then(() => {
+                    document.getElementById('musicIcon').className = "fa-solid fa-compact-disc fa-spin";
+                }).catch(e => {
+                    console.log("Autoplay prevented:", e);
+                });
+            }
+        }
+
+        function toggleAudio() {
+            const audio = document.getElementById('bgAudio');
+            const icon = document.getElementById('musicIcon');
+            if (audio.paused) {
+                audio.play();
+                icon.className = "fa-solid fa-compact-disc fa-spin";
+            } else {
+                audio.pause();
+                icon.className = "fa-solid fa-music";
+            }
+        }
+
+        function setLanguage(lang) {
+            const myElements = document.querySelectorAll('.lang-my');
+            const enElements = document.querySelectorAll('.lang-en');
+            const btnMy = document.getElementById('lang-my');
+            const btnEn = document.getElementById('lang-en');
+
+            if (lang === 'my') {
+                myElements.forEach(el => el.classList.remove('hidden'));
+                enElements.forEach(el => el.classList.add('hidden'));
+                btnMy.className = "px-3 py-1 rounded-full bg-gold-600 text-white font-bold shadow-sm transition-all";
+                btnEn.className = "px-3 py-1 rounded-full text-stone-600 hover:text-gold-700 transition-all";
+            } else {
+                myElements.forEach(el => el.classList.add('hidden'));
+                enElements.forEach(el => el.classList.remove('hidden'));
+                btnEn.className = "px-3 py-1 rounded-full bg-gold-600 text-white font-bold shadow-sm transition-all";
+                btnMy.className = "px-3 py-1 rounded-full text-stone-600 hover:text-gold-700 transition-all";
+            }
+        }
+
+        function openPhotoModal(index) {
+            currentPhotoIdx = index;
+            const modal = document.getElementById('photoModal');
+            const modalImg = document.getElementById('modalImage');
+            const photoIdxText = document.getElementById('photoIndex');
+
+            modalImg.src = galleryPhotos[currentPhotoIdx];
+            photoIdxText.innerText = `${currentPhotoIdx + 1} / ${galleryPhotos.length}`;
+            modal.classList.remove('hidden');
+        }
+
+        function closePhotoModal() {
+            document.getElementById('photoModal').classList.add('hidden');
+        }
+
+        function prevPhoto() {
+            currentPhotoIdx = (currentPhotoIdx - 1 + galleryPhotos.length) % galleryPhotos.length;
+            openPhotoModal(currentPhotoIdx);
+        }
+
+        function nextPhoto() {
+            currentPhotoIdx = (currentPhotoIdx + 1) % galleryPhotos.length;
+            openPhotoModal(currentPhotoIdx);
+        }
+
+        function updateCountdown() {
+            const weddingDate = new Date('2026-11-15T09:00:00+06:30').getTime();
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('cd-days').innerText = "00";
+                document.getElementById('cd-hours').innerText = "00";
+                document.getElementById('cd-minutes').innerText = "00";
+                document.getElementById('cd-seconds').innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+            document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('cd-seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        function downloadICS() {
+            const icsData = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Wedding Invitation//EN
+BEGIN:VEVENT
+SUMMARY:Mg Aung Myat Kaung & Ma Wyne Pyae Pyae Aung Wedding
+DESCRIPTION:Wedding Reception at Dhammikayama Pauk Taw Monastery
+LOCATION:Dhammikayama Pauk Taw Monastery, Insein, Yangon
+DTSTART:20261115T023000Z
+DTEND:20261115T053000Z
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'wedding-event.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function createPetals() {
+            const container = document.getElementById('petals-container');
+            const petalCount = 15;
+
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal-fall';
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDuration = (Math.random() * 5 + 6) + 's';
+                petal.style.animationDelay = (Math.random() * 5) + 's';
+                
+                petal.innerHTML = `<svg width="20" height="20" viewBox="0 0 30 30" fill="none">
+                    <path d="M15 0 C22 10, 30 15, 15 30 C0 15, 8 10, 15 0 Z" fill="#E5C158" opacity="0.65"/>
+                </svg>`;
+                
+                container.appendChild(petal);
+            }
+        }
+
+        function initParticles() {
+            const canvas = document.getElementById('particleCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const particles = Array.from({ length: 35 }, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2 + 0.5,
+                alpha: Math.random(),
+                speed: Math.random() * 0.015 + 0.005
+            }));
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.alpha += p.speed;
+                    if (p.alpha > 1 || p.alpha < 0) p.speed = -p.speed;
+                    ctx.fillStyle = `rgba(212, 175, 55, ${Math.abs(p.alpha)})`;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+    </script>
+</body>
+</html>
